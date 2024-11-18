@@ -1,21 +1,20 @@
 (function () {
-
-    function findAxe(data, nameEnding)  {
+    function findAxe(data, nameEnding) {
         console.log("findAxe", data);
         var attachments = [];
         if (data.testStage) {
             attachments = findAxeInSteps(data.testStage, attachments, nameEnding);
         }
         return attachments;
-    };
+    }
 
-    function findAxeInSteps(step, attachments, nameEnding)  {
+    function findAxeInSteps(step, attachments, nameEnding) {
         attachments = [...attachments, ...step.attachments.filter(function (a) {
             return a.name.endsWith(nameEnding);
         })];
         step.steps.forEach(substep => attachments = [...attachments, ...findAxeInSteps(substep, attachments, nameEnding)]);
         return attachments;
-    };
+    }
 
     var ErrorView = Backbone.Marionette.View.extend({
         templateContext: function () {
@@ -25,6 +24,7 @@
             return '<pre class="axe-report-error">' + data.error + '</pre>';
         },
     });
+
     var AttachmentView = Backbone.Marionette.View.extend({
         regions: {
             subView: '.axe-report-view',
@@ -32,7 +32,7 @@
         template: function (data) {
             console.log(data);
             console.log(this);
-            return '<div class="axe-report-view">HIIIIIIIIIIIERRERERER</div>';
+            return '<div class="axe-report-view"></div>';
         },
         onRender: function () {
             console.log("onRender", this.options);
@@ -72,9 +72,12 @@
                 return '';
             }
 
-            return (
-                '<iframe id="axeReportIframe" src="plugin/seleniumToolkit-axe-viewer/index.html?file=../../'+data.axeReport.sourceUrl+'" width="100%" style="border:none;"></iframe>'
+            // Dynamisch den `dark=true`-Parameter hinzufügen
+            const isDarkMode = document.body.classList.contains('is-dark');
+            const darkParam = isDarkMode ? '&dark=true' : '';
 
+            return (
+                `<iframe id="axeReportIframe" src="plugin/seleniumToolkit-axe-viewer/index.html?file=../../${data.axeReport.sourceUrl}${darkParam}" width="100%" style="border:none;"></iframe>`
             );
         },
         onRender: function () {
@@ -105,11 +108,24 @@
                         characterData: true    // überwacht Textänderungen
                     });
                 };
+
+                // Beobachtung von Änderungen an der Klasse `is-dark`
+                const darkModeObserver = new MutationObserver(() => {
+                    const isDark = document.body.classList.contains('is-dark');
+                    if (isDark && !iframe.src.includes('dark=true')) {
+                        iframe.src += '&dark=true';
+                    } else if (!isDark) {
+                        iframe.src = iframe.src.replace('&dark=true', '');
+                    }
+                });
+
+                darkModeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
             };
 
             requestAnimationFrame(waitForIframe);
         }
     });
+
     allure.api.addAttachmentViewer('application/vnd.allure.axe.view', {
         View: AttachmentView,
         icon: 'fa fa-eye',
