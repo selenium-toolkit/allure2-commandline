@@ -25,6 +25,7 @@ module.exports = (options) =>
       path: utils.root("build/www"),
       publicPath: "/",
       filename: "app.js",
+    scriptLoading: 'defer'         // Lädt das Script mit 'defer'
     },
     module: {
       rules: [

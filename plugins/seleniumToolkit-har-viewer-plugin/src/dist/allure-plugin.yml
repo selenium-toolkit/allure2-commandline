@@ -1,0 +1,12 @@
+id: seleniumToolkit-har-viewer
+name: SeleniumToolkit Har-Viewer
+description: Who cares about description by just-boris
+jsFiles:
+  - fixContent.js
+  - har.js
+  - har2.js
+  - index.js
+cssFiles:
+  - har.css
+  - har2.css
+  - styles.css

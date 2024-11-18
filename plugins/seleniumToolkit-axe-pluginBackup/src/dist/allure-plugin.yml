@@ -1,0 +1,7 @@
+id: seleniumToolkit-axe-viewer
+name: SeleniumToolkit Axe-Viewer
+description: This plugin allows you to view the axe results in the allure report
+jsFiles:
+  - index.js
+cssFiles:
+  - styles.css

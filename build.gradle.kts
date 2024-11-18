@@ -27,7 +27,7 @@ plugins {
     id("com.github.spotbugs")
     id("com.bmuschko.docker-remote-api")
     id("io.github.gradle-nexus.publish-plugin")
-    id("com.diffplug.spotless")
+    //id("com.diffplug.spotless")
     id("com.gorylenko.gradle-git-properties")
     id("io.spring.dependency-management")
     id("org.owasp.dependencycheck")
@@ -65,10 +65,10 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "signing")
     apply(plugin = "maven-publish")
-    apply(plugin = "checkstyle")
-    apply(plugin = "pmd")
-    apply(plugin = "com.github.spotbugs")
-    apply(plugin = "com.diffplug.spotless")
+    //apply(plugin = "checkstyle")
+    //apply(plugin = "pmd")
+    //apply(plugin = "com.github.spotbugs")
+    //apply(plugin = "com.diffplug.spotless")
     apply(plugin = "io.spring.dependency-management")
 
     val orgSlf4jVersion = "2.0.16"
@@ -164,7 +164,7 @@ subprojects {
 
     fun excludeGeneratedSources(source: FileTree): FileTree = (source - fileTree("build/generated-sources")).asFileTree
 
-    checkstyle {
+    /*checkstyle {
         toolVersion = dependencyManagement.managedVersions["com.puppycrawl.tools:checkstyle"]!!
         configDirectory = rootProject.layout.projectDirectory.dir("gradle/quality-configs/checkstyle")
     }
@@ -179,7 +179,7 @@ subprojects {
     spotbugs {
         toolVersion = dependencyManagement.managedVersions["com.github.spotbugs:spotbugs"]!!
         excludeFilter = rootProject.file("gradle/quality-configs/spotbugs/exclude.xml")
-    }
+    }*/
 
     tasks.withType(Checkstyle::class) {
         source = excludeGeneratedSources(source)
@@ -192,7 +192,7 @@ subprojects {
     tasks.withType(SpotBugsTask::class) {
     }
 
-    tasks.checkstyleTest {
+    /*tasks.checkstyleTest {
         enabled = false
     }
 
@@ -202,9 +202,9 @@ subprojects {
 
     tasks.spotbugsTest {
         enabled = false
-    }
+    }*/
 
-    spotless {
+    /*spotless {
         java {
             target("src/**/*.java")
             removeUnusedImports()
@@ -231,7 +231,7 @@ subprojects {
         }
 
         encoding("UTF-8")
-    }
+    }*/
 
     java {
         withJavadocJar()

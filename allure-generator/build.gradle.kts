@@ -99,6 +99,8 @@ dependencies {
     allurePlugin(project(path = ":behaviors-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":packages-plugin", configuration = "allurePlugin"))
     allurePlugin(project(path = ":screen-diff-plugin", configuration = "allurePlugin"))
+    allurePlugin(project(path = ":seleniumToolkit-axe-plugin", configuration = "allurePlugin"))
+    allurePlugin(project(path = ":seleniumToolkit-har-viewer-plugin", configuration = "allurePlugin"))
     annotationProcessor("org.projectlombok:lombok")
     api(project(":allure-plugin-api"))
     compileOnly("org.projectlombok:lombok")

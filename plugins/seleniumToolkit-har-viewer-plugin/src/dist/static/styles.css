@@ -1,0 +1,5 @@
+#root .row button:nth-of-type(11),
+#root .row div div div button,
+footer{
+    display: none!important;
+}

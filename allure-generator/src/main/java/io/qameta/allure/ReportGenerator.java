@@ -80,7 +80,8 @@ public class ReportGenerator {
                 @Override
                 public FileVisitResult visitFile(final Path file,
                                                  final BasicFileAttributes attrs) {
-                    final String fileId = file.relativize(finalTempDir).toString();
+                    //final String fileId = file.relativize(finalTempDir).toString();
+                    final String fileId = finalTempDir.relativize(file).toString();
                     storage.addDataFile(fileId, file);
                     return FileVisitResult.CONTINUE;
                 }

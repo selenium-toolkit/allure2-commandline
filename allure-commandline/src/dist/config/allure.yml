@@ -1,6 +1,7 @@
 plugins:
   - junit-xml-plugin
   - xunit-xml-plugin
+  - custom-logo-plugin
   - trx-plugin
   - behaviors-plugin
   - packages-plugin
@@ -8,3 +9,6 @@ plugins:
   - xctest-plugin
   - jira-plugin
   - xray-plugin
+  - seleniumToolkit-plugin
+  - seleniumToolkit-axe-plugin
+  - seleniumToolkit-har-viewer-plugin

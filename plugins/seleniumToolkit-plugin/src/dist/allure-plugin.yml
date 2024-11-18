@@ -1,0 +1,12 @@
+id: seleniumToolkit
+name: Selenium-Toolkit aggregator
+description: The aggregator adds seleniumToolkit tab to the report
+extensions:
+  - io.qameta.allure.seleniumToolkit.SeleniumToolkitPlugin
+jsFiles:
+  - bootstrap.min.js
+  - index.js
+cssFiles:
+  - bootstrap.min.css
+  - index.css
+  - styles.css

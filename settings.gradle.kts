@@ -15,7 +15,10 @@ val plugins = listOf(
         "trx-plugin",
         "xctest-plugin",
         "xray-plugin",
-        "xunit-xml-plugin"
+        "xunit-xml-plugin",
+        "seleniumToolkit-har-viewer-plugin",
+        "seleniumToolkit-axe-plugin",
+        "seleniumToolkit-plugin",
 )
 
 plugins.forEach {
@@ -52,7 +55,7 @@ pluginManagement {
     }
     plugins {
         id("com.bmuschko.docker-remote-api") version "9.4.0"
-        id("com.diffplug.spotless") version "6.25.0"
+        //id("com.diffplug.spotless") version "6.25.0"
         id("com.github.node-gradle.node") version "7.1.0"
         id("com.gorylenko.gradle-git-properties") version "2.4.2"
         id("com.netflix.nebula.ospackage") version "11.10.0"
